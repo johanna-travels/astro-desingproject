@@ -2,13 +2,10 @@
 @plugin "daisyui";
 
 
-/* after @plugin "daisyui"; */
 @theme {
+  /* Fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
-
-  --color-olive-500: #6b8e23;
-  --color-olive-600: #556b2f;
 
   /* Earthy palette */
   --color-sand: #F4F4E8;
@@ -18,15 +15,16 @@
 
 
 @layer base {
-  body { @apply font-sans text-base-content bg-white; }
+  body { @apply font-sans text-base-content; }
   h1   { @apply font-display text-5xl font-bold; }
   h2   { @apply font-display text-3xl font-semibold; }
   h3   { @apply text-xl font-semibold; }
   p    { @apply leading-relaxed; }
-  a    { @apply text-primary hover:underline; }
+}
 
-  /* Global button style — all <button> and .btn-pill (for anchors) share this look */
-  button, .btn-pill {
+@layer components {
+  /* Pill button — opt-in via class so we don't override every native <button> */
+  .btn-pill {
     @apply rounded-full bg-sand text-ink font-light px-8 py-3
            border border-black/10 shadow-sm
            transition-all duration-200 ease-out
