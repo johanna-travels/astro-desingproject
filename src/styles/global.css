@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+/* after @plugin "daisyui"; */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+
+  --color-olive-500: #6b8e23;
+  --color-olive-600: #556b2f;
+
+  /* Earthy palette */
+  --color-sand: #F4F4E8;
+  --color-terracotta: #D36E53;
+  --color-ink: #2C2C2C;
+}
+
+
+@layer base {
+  body { @apply font-sans text-base-content bg-white; }
+  h1   { @apply font-display text-5xl font-bold; }
+  h2   { @apply font-display text-3xl font-semibold; }
+  h3   { @apply text-xl font-semibold; }
+  p    { @apply leading-relaxed; }
+  a    { @apply text-primary hover:underline; }
+
+  /* Global button style — all <button> and .btn-pill (for anchors) share this look */
+  button, .btn-pill {
+    @apply rounded-full bg-sand text-ink font-light px-8 py-3
+           border border-black/10 shadow-sm
+           transition-all duration-200 ease-out
+           hover:bg-terracotta hover:text-sand hover:border-terracotta hover:shadow-md hover:-translate-y-0.5
+           active:scale-95 active:shadow-inner active:bg-terracotta
+           focus:outline-none focus:ring-2 focus:ring-terracotta/40
+           cursor-pointer;
+  }
+}
+
+/* --- Scroll fade-in animation --- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
