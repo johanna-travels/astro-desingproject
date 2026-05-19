@@ -3,8 +3,8 @@
 
 
 @theme {
-  /* Fonts */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Fonts — Open Sans (sans/body) + Playfair Display (display/headings) */
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
 
   /* Earthy palette */
@@ -15,14 +15,59 @@
 
 
 @layer base {
-  body { @apply font-sans text-base-content; }
+  /* Light, airy default vibe across the project */
+  body { @apply font-sans font-light text-base-content; }
   h1   { @apply font-display text-5xl font-bold; }
   h2   { @apply font-display text-3xl font-semibold; }
   h3   { @apply text-xl font-semibold; }
-  p    { @apply leading-relaxed; }
+  p    { @apply leading-relaxed font-light; }
 }
 
 @layer components {
+  /*
+   * 12-column flex grid — site-wide
+   * ────────────────────────────────────────────────────────────
+   * Every section uses .grid-container > .grid-row > .grid-col
+   * so all columns align to the same vertical grid lines.
+   */
+  .grid-container {
+    /* px-5 = 20px each side → 40px total → on a 995px screen, column = 955px */
+    @apply w-full max-w-[1540px] mx-auto px-5;
+  }
+  .grid-row {
+    @apply flex flex-wrap justify-center -mx-2;
+  }
+  .grid-col {
+    @apply px-2;
+  }
+  /* Span helpers (1–12). Mobile = full width; from md, span N/12. */
+  .col-1  { @apply w-full md:w-1/12; }
+  .col-2  { @apply w-full md:w-2/12; }
+  .col-3  { @apply w-full md:w-3/12; }
+  .col-4  { @apply w-full md:w-4/12; }
+  .col-5  { @apply w-full md:w-5/12; }
+  .col-6  { @apply w-full md:w-6/12; }
+  .col-7  { @apply w-full md:w-7/12; }
+  .col-8  { @apply w-full md:w-8/12; }
+  .col-9  { @apply w-full md:w-9/12; }
+  .col-10 { @apply w-full md:w-10/12; }
+  .col-11 { @apply w-full md:w-11/12; }
+  .col-12 { @apply w-full; }
+
+  /*
+   * Statement / Introduction typography
+   * ───────────────────────────────────
+   * Open Sans · 18px · 30px line-height · weight 400 · pure black.
+   * Designed for high-readability intro / statement copy.
+   */
+  .statement {
+    font-family: var(--font-sans); /* Open Sans */
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+  }
+
   /* Pill button — opt-in via class so we don't override every native <button> */
   .btn-pill {
     @apply rounded-full bg-sand text-ink font-light px-8 py-3

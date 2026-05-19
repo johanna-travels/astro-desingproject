@@ -2,35 +2,49 @@
 import { Image } from 'astro:assets';
 import heroImg from '../assets/hero.jpg';
 ---
-  <section class="hero-outer">
-    <!--
-      12-column grid (Flexbox) — symmetrical 5 / 1 / 5
-      ──────────────────────────────────────────────────────────────
-      • Container : max-w-[1540px] mx-auto px-4   → page-edge safety
-      • Row       : flex flex-wrap -mx-2          → cancels column padding at edges
-      • Columns   : w-{N}/12 px-2                 → 0.5rem gutter on each side (1rem total between cols)
-      • Layout    : 5 / 1 / 5                     → symmetrical, with the central 1/12 reserved
-                                                    entirely for the vertical divider
-    -->
-    <section id="wrapper" class="hero-section relative w-full max-w-[1540px] mx-auto px-4 py-20 bg-black">
 
-      <!-- Row A — Full-width row (single 12/12 column spanning the entire grid) -->
-      <div class="row flex flex-wrap -mx-2 mb-12">
-        <div class="col w-full px-2">
-          <div class="text-center text-sand">
+
+  <main class="hero-outer">
+    <!-- Row A — Header / Intro section — same skeleton as Row B (grid-container, py-20, grid-row items-stretch); content centered -->
+    <section class="grid-container relative py-20 bg-black">
+      <!-- Row (Parent) — structural floor that spans the page -->
+      <div class="grid-row">
+        <!-- Column (12/12) — takes 100% horizontal space, display:flex -->
+        <div class="grid-col col-12 flex" data-xl-width="12">
+          <!-- Content-Wrapper (Child) — block child holding the actual text -->
+          <div class="content-wrapper w-full block text-center text-sand p-0 m-0">
             <p class="text-sm tracking-[0.3em] uppercase opacity-70 mb-3">Travelastro · Experiences</p>
-            <h1 class="font-display text-5xl md:text-7xl font-bold leading-[1.05]">
-              Discover the world, one story at a time.
+            <!--
+              Heading
+              • Font size: clamp(3.44rem, 12vw, 7.22rem)
+                  → fluid: 55px on small screens, max 115.5px on huge screens,
+                    scales with 12% of viewport width in between
+              • Line-height: 0.9 (90%) → on a ~117px font that's ~105.7px per line
+              • Computed height stays `auto` — line-height drives visual height,
+                spans (display:inline) inherit it from the <p>/<h1>
+            -->
+            <!--
+              Three inline <span>s separated by <br>:
+              • Each span is display:inline → no own height
+              • All three follow the parent's line-height (~105.7px)
+              • Parent stacks them → total height ≈ 3 × 106 ≈ 332px
+            -->
+            <h1 class="font-display font-bold text-[clamp(3.44rem,12vw,7.22rem)] leading-[0.9]">
+              <span>Discover the world,</span><br />
+              <span>one story</span><br />
+              <span>at a time.</span>
             </h1>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Row B — Symmetrical 5 / 1 / 5 -->
-      <div class="row flex flex-wrap justify-center -mx-2 items-stretch">
+    <!-- Inner wrapper — dark hero panel containing only Row B (Split 5 / 1 / 5) -->
+    <section id="wrapper" class="hero-section grid-container relative py-20 bg-black">
+      <div class="grid-row items-stretch">
 
         <!-- Column 1 — 5/12 — Left content -->
-        <div class="col w-full md:w-5/12 px-2">
+        <div class="grid-col col-5" data-xl-width="5">
           <div class="h-full flex items-center bg-ink text-sand p-8 md:p-10">
             <div class="space-y-5 font-sans leading-relaxed">
               <p>
@@ -53,7 +67,7 @@ import heroImg from '../assets/hero.jpg';
         </div>
 
         <!-- Column 2 — 1/12 — Divider -->
-        <div class="col w-full md:w-1/12 px-2 flex justify-center">
+        <div class="grid-col col-1 flex justify-center" data-xl-width="1">
           <div class="hidden md:flex h-full items-center justify-center">
             <div class="flex flex-col items-center justify-center gap-4 h-1/2 min-h-[120px]">
               <div class="w-px flex-1 bg-white"></div>
@@ -63,21 +77,25 @@ import heroImg from '../assets/hero.jpg';
         </div>
 
         <!-- Column 3 — 5/12 — Right content (portrait) -->
-        <div class="col w-full md:w-5/12 px-2 mt-6 md:mt-0">
+        <div class="grid-col col-5 mt-6 md:mt-0" data-xl-width="5">
           <div class="hero-bg h-full flex items-center justify-center p-4 md:p-6 will-change-transform">
-            <div class="relative w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] overflow-hidden bg-white p-3 shadow-2xl ring-1 ring-white/40">
-              <img
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-                alt="Tropical beach at sunset"
-                class="w-full h-full object-cover"
-              />
+            <div class="relative w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] overflow-hidden bg-white p-1 shadow-2xl ring-1 ring-white/30">
+              <div class="relative w-full h-full overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+                  alt="Tropical beach at sunset"
+                  class="w-full h-full object-cover"
+                />
+                <!-- Dark overlay to soften / darken the image -->
+                <div class="pointer-events-none absolute inset-0 bg-black/35"></div>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
     </section>
-  </section>
+  </main>
 
 
 
