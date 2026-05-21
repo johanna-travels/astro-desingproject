@@ -1,0 +1,86 @@
+<!-- ==================== SLIDER SECTION ==================== -->
+<div class="relative w-full h-[80vh] bg-slate-900 overflow-hidden">
+  
+  <!-- Inputs -->
+  <input class="hidden peer/slider1 checkbox" type="radio" name="slider" id="slider1" checked />
+  <input class="hidden peer/slider2 checkbox" type="radio" name="slider" id="slider2" />
+  <input class="hidden peer/slider3 checkbox" type="radio" name="slider" id="slider3" />
+
+  <!-- Slides -->
+  <div class="relative w-[300vw] h-full flex transition-all duration-500 ease-in-out peer-checked/slider1:left-0 peer-checked/slider2:-left-[100vw] peer-checked/slider3:-left-[200vw]">
+    <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+      <img 
+        src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80" 
+        alt="Slide 1" 
+        width="1920" 
+        height="1080"
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+        class="w-full h-full object-cover"
+      />
+      <h2 class="absolute text-white/80 text-5xl font-bold drop-shadow-lg">Slide 1</h2>
+    </div>
+    <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+      <img 
+        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80" 
+        alt="Slide 2" 
+        width="1920" 
+        height="1080"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <h2 class="absolute text-white/80 text-5xl font-bold drop-shadow-lg">Slide 2</h2>
+    </div>
+    <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+      <img 
+        src="https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=1920&q=80" 
+        alt="Slide 3" 
+        width="1920" 
+        height="1080"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <h2 class="absolute text-white/80 text-5xl font-bold drop-shadow-lg">Slide 3</h2>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="absolute bottom-12 left-12 flex flex-row gap-3 z-20
+              peer-checked/slider1:peer-[&_label:nth-of-type(1)]/slider1:opacity-100 
+              peer-checked/slider1:peer-[&_label:nth-of-type(1)]/slider1:w-10 
+              peer-checked/slider2:peer-[&_label:nth-of-type(2)]/slider2:opacity-100 
+              peer-checked/slider2:peer-[&_label:nth-of-type(2)]/slider2:w-10 
+              peer-checked/slider3:peer-[&_label:nth-of-type(3)]/slider3:opacity-100 
+              peer-checked/slider3:peer-[&_label:nth-of-type(3)]/slider3:w-10">
+    <label for="slider1" class="block w-5 h-5 bg-slate-800 rounded-full cursor-pointer opacity-40 z-10 transition-all duration-300 ease-in-out hover:scale-125 hover:opacity-100"></label>
+    <label for="slider2" class="block w-5 h-5 bg-slate-800 rounded-full cursor-pointer opacity-40 z-10 transition-all duration-300 ease-in-out hover:scale-125 hover:opacity-100"></label>
+    <label for="slider3" class="block w-5 h-5 bg-slate-800 rounded-full cursor-pointer opacity-40 z-10 transition-all duration-300 ease-in-out hover:scale-125 hover:opacity-100"></label>
+  </div>
+</div>
+<!-- ==================== END OF SLIDER ==================== -->
+
+<!-- ==================== CONTENT BELOW SLIDER ==================== -->
+<!-- Έβαλα ένα σκούρο background (bg-slate-950) για να δένει με το slider, αλλά μπορείς να το αλλάξεις -->
+<div class="w-full bg-white-950 flex justify-center py-16 px-8">
+  <div class="flex flex-col md:flex-row gap-6 max-w-6xl w-full">
+    
+    <article class="w-full md:w-[45%] opacity-80 text-3xl font-bold">
+      <span class="text-terracotta semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+      <p class="mt-4 text-xl font-normal text-slate-600">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum atque velit sequi voluptate aut fuga iusto pariatur incidunt nulla odit rem sit, earum natus suscipit dignissimos odio error blanditiis architecto!
+      </p>
+    </article>
+      <div class="w-full md:w-[10%] flex items-start justify-center pt-4 md:block hidden sm-hidden">
+        <svg width="2" height="600" viewBox="0 0 2 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1" y1="0" x2="1" y2="300" stroke="#F4F4E8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    <article class="w-full md:w-[45%] opacity-80 text-xl font-normal leading-relaxed">
+      <p class="mt-4 text-xl font-normal text-slate-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus voluptatibus beatae nulla ullam nam. Vero qui, rem autem iusto beatae temporibus nulla, eius ut quod in cupiditate fugit commodi error?</p>
+    </article>
+    
+  </div>
+</div>
